@@ -1,4 +1,4 @@
-# Open Match
+﻿# Open Match
 
 Open Match is an open source game matchmaker designed to allow game creators to re-use a common matchmaker framework. It’s designed to be flexible (run it anywhere Kubernetes runs), extensible (match logic can be customized to work for any game), and scalable.
 
@@ -198,18 +198,3 @@ Apache 2.0
 * Out-of-the-box, the Redis deployment should be a HA configuration using [Redis Sentinel](https://redis.io/topics/sentinel).
 * Redis watch should be unified to watch a hash and stream updates.  The code for this is written and validated but not committed yet. We don't want to support two redis watcher code paths, so the backend watch of the match object should be switched to unify the way the frontend and backend watch keys.  Unfortunately this change touches the whole chain of components that touch backend match objects (mmf, evaluator, backendapi) and so needs additional work and testing before it is integrated.
 
-# Planned improvements
-
-* “Writing your first matchmaker” getting started guide will be included in an upcoming version.
-* Documentation for using the example customizable components and the `backendstub` and `frontendstub` applications to do an end-to-end (e2e) test will be written. This all works now, but needs to be written up.
-* A [Helm](https://helm.sh/) chart to stand up Open Match will be provided in an upcoming version.
-* We plan to host 'official' docker images for all release versions of the core components in publicly available docker registries soon.
-* CI/CD for this repo and the associated status tags are planned.
-* Documentation on release process and release calendar.
-* [OpenCensus tracing](https://opencensus.io/core-concepts/tracing/) will be implemented in an upcoming version.
-* Read logrus logging configuration from matchmaker_config.json.
-* Golang unit tests will be shipped in an upcoming version.
-* A full load-testing and e2e testing suite will be included in an upcoming version.
-* All state storage operations should be isolated from core components into the `statestorage/` modules.  This is necessary precursor work to enabling Open Match state storage to use software other than Redis.
-* The MMFOrc component name will be updated in a future version to something easier to understand.  Suggestions welcome!
-* The MMFOrc component currently requires a default service account with permission to kick of k8s jobs, but the revision today makes the service account have full permissions.  This needs to be reworked to have min required RBAC permissions before it is used in production, but is fine for closed testing and development.
